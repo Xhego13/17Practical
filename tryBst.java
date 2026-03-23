@@ -71,9 +71,7 @@ public tNode() {
         double stdDev = Math.sqrt(variance);
         System.out.printf("%-25s %-15d %-20.2f %-20.2f%n",method, n, avg, stdDev);
   }
-
-    
-  } 
+} 
   public long getKey() {return key;}
   public void setKey(long k) {key = k;}
   public String getData() {return data;}
