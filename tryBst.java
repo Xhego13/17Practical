@@ -83,12 +83,93 @@ public tNode() {
   public tNode getParent() {return parent; }
   public void setParent(tNode n) {parent = n;}
 }
-boolean isBST(tNode node, int min, int max) {//CO-PILOT GENERATED
+boolean isBST(tNode node, int min, int max) {//CO-PILOT 
     if (node == null) return true;
     if (node.key <= min || node.key >= max) return false;
     return isBST(node.left, min, node.key) && isBST(node.right, node.key, max);
 }
+class BST { //COLOT AI
+    tNode root;
 
+    BST() {
+        root = null;
+    }
+
+    
+    void insert(int key) {
+        root = insertRec(root, key);
+    }
+
+    tNode insertRec(tNode root, int key) {
+        if (root == null) {
+            root = new tNode(key);
+            return root;
+        }
+        if (key < root.key)
+            root.left = insertRec(root.left, key);
+        else if (key > root.key)
+            root.right = insertRec(root.right, key);
+        return root;
+    }
+
+  
+    void delete(int key) {
+        root = deleteRec(root, key);
+    }
+
+    tNode deleteRec(tNode root, int key) {
+        if (root == null) return root;
+
+        if (key < root.key)
+            root.left = deleteRec(root.left, key);
+        else if (key > root.key)
+            root.right = deleteRec(root.right, key);
+        else {
+            if (root.left == null) return root.right;
+            else if (root.right == null) return root.left;
+
+            root.key = minValue(root.right);
+            root.right = deleteRec(root.right, root.key);
+        }
+        return root;
+    }
+
+    int minValue(tNode root) {
+        int minv = root.key;
+        while (root.left != null) {
+            minv = root.left.key;
+            root = root.left;
+        }
+        return minv;
+    }
+
+    
+    boolean isBST() {
+        return isBSTRec(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    boolean isBSTRec(tNode node, int min, int max) {
+        if (node == null) return true;
+        if (node.key <= min || node.key >= max) return false;
+        return isBSTRec(node.left, min, node.key) &&
+               isBSTRec(node.right, node.key, max);
+    }
+
+    
+    void deleteEvens() {
+        root = deleteEvensRec(root);
+    }
+
+    tNode deleteEvensRec(tNode node) {
+        if (node == null) return null;
+        node.left = deleteEvensRec(node.left);
+        node.right = deleteEvensRec(node.right);
+        if (node.key % 2 == 0) {
+            return deleteRec(node, node.key);
+        }
+        return node;
+    }
+}
 
 
 
