@@ -25,6 +25,15 @@ public tNode() {
   public tNode getParent() {return parent; }
   public void setParent(tNode n) {parent = n;}
 }
+public void insert(tNode n) {
+  if (root == null) {
+    root = n;
+    root.setParent(null);
+  }else
+    root.insert(n);
+  }
+
+
 
 
 
