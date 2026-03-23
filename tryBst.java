@@ -14,16 +14,16 @@ public tNode() {
     left = null;
     right = null;
   } 
-  public long getKey() {return key; }
-  public void setKey(long k) {key = k; }
-  public String getData() {return data; }
-  public void setData(String d) {data = d; 
-  public tNode getLeft() {return left; }
-  public void setLeft(tNode n) {left = n; }
+  public long getKey() {return key;}
+  public void setKey(long k) {key = k;}
+  public String getData() {return data;}
+  public void setData(String d) {data = d;} 
+  public tNode getLeft() {return left;}
+  public void setLeft(tNode n) {left = n;}
   public tNode getRight() {return right; }
-  public void setRight(tNode n) {right = n; }
+  public void setRight(tNode n) {right = n;}
   public tNode getParent() {return parent; }
-  public void setParent(tNode n) {parent = n; }
+  public void setParent(tNode n) {parent = n;}
 }
 
 
