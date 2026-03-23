@@ -3,7 +3,7 @@ public class tryBst{
     if (root == null) {
       root = n;
       root.setParent(null);
-    }else
+    }else{
       root.insert(n);
     }
   public void insert(tNode n){
@@ -21,6 +21,8 @@ public class tryBst{
         right.insert(n);}
     } 
 }
+
+  
 public tNode() {
   key = 0;
   data = ””;
@@ -33,6 +35,9 @@ public tNode() {
     parent = null;
     left = null;
     right = null;
+  public static void main(String[] args){
+
+    
   } 
   public long getKey() {return key;}
   public void setKey(long k) {key = k;}
@@ -44,6 +49,11 @@ public tNode() {
   public void setRight(tNode n) {right = n;}
   public tNode getParent() {return parent; }
   public void setParent(tNode n) {parent = n;}
+}
+boolean isBST(tNode node, int min, int max) {//CO-PILOT GENERATED
+    if (node == null) return true;
+    if (node.key <= min || node.key >= max) return false;
+    return isBST(node.left, min, node.key) && isBST(node.right, node.key, max);
 }
 
 
