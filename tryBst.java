@@ -36,6 +36,41 @@ public tNode() {
     left = null;
     right = null;
   public static void main(String[] args){
+      int n = 15; // Example size (2^4 - 1)
+      int repetitions = 30;
+      long[] populateTimes = new long[repetitions];
+      long[] deleteTimes = new long[repetitions];
+      for (int i = 0; i < repetitions; i++) {
+            BST tree = new BST();
+            long startPopulate = System.currentTimeMillis();
+            buildBalanced(tree, 1, n);
+            long endPopulate = System.currentTimeMillis();
+            populateTimes[i] = endPopulate - startPopulate;
+
+            long startDelete = System.currentTimeMillis();
+            tree.deleteEvens();
+            long endDelete = System.currentTimeMillis();
+            deleteTimes[i] = endDelete - startDelete;
+      }
+
+        printStats("Populate tree", n, populateTimes);
+        printStats("Remove evens from the tree", n, deleteTimes);
+  }
+  Static void buildBalanced(BST tree, int start, int end) {
+        if (start > end) return;
+        int mid = (start + end) / 2;
+        tree.insert(mid);
+        buildBalanced(tree, start, mid - 1);
+        buildBalanced(tree, mid + 1, end);
+  }
+
+    
+  static void printStats(String method, int n, long[] times) {
+        double avg = Arrays.stream(times).average().orElse(0);
+        double variance = Arrays.stream(times).mapToDouble(t -> Math.pow(t - avg, 2)).sum() / times.length;
+        double stdDev = Math.sqrt(variance);
+        System.out.printf("%-25s %-15d %-20.2f %-20.2f%n",method, n, avg, stdDev);
+  }
 
     
   } 
