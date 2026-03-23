@@ -32,6 +32,20 @@ public void insert(tNode n) {
   }else
     root.insert(n);
   }
+public void insert(tNode n){
+if (n.key < key){ 
+  if (left == null){
+    n.parent = this;
+    left = n;
+  }else{
+    left.insert(n);}
+}else{ 
+  if (right == null) {
+     n.parent = this;
+     right = n;
+  }else{
+    right.insert(n);}
+}
 
 
 
