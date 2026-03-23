@@ -6,7 +6,6 @@ public class tryBst{
         key = item;
         left = right = null
     }
-}
-  
+  }  
 }
 
